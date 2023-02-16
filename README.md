@@ -19,10 +19,10 @@ The purpose of this assignment is to practice creating interactive visualization
 
 1. Using the index.html file included in your repo, an *external* stylesheet (no styling should be done inline; it should all be done via external css), and an *external* javascript file (no javascript code should be included in your html file; it should all be done via external js) please do the following: 
 
-   - Make all font on your webpage Arial. 
-   - Add a title: "hw-05".
-   - Add a centered header: "hw-05: Interactive Graph with D3".
-   - Create two columns on your webpage. The left should take up 60% of the page and the right should take up 40%. 
+   - Make all font on your webpage Arial. *
+   - Add a title: "hw-05". *
+   - Add a centered header: "hw-05: Interactive Graph with D3". *
+   - Create two columns on your webpage. The left should take up 60% of the page and the right should take up 40%. *
    - In the left column, use D3 to create a scatterplot of the data in the scatter-data.csv file included in this repo. The D3 library is included in the js folder of this repo; be sure to include it in your html file. Your scatterplot should include the following interactive features:
       - If the user hovers over a point, that point should highlight.  
       - If the user clicks on a point, that point should be given a border. And the point's coordinates should show in the right column. 
