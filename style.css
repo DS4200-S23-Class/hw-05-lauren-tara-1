@@ -1,0 +1,27 @@
+body {
+	font-family: Arial;
+	background-color: white;
+  	color: black;
+}
+
+
+.centered {
+  text-align: center;
+}
+
+
+.row {
+  display: flex;
+}
+
+
+.left {
+  width: 60%;
+  border: 1px solid black;
+}
+
+
+.right {
+  width: 40%;
+  border: 1px solid black;
+}
