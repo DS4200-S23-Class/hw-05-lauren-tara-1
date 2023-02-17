@@ -30,3 +30,8 @@ body {
 .point {
   fill: darkcyan;
 }
+
+.bar {
+
+  fill: red;
+}
