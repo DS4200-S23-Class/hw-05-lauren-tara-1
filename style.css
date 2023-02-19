@@ -6,7 +6,7 @@ body {
 
 
 .centered {
-  text-align: center;
+  text-align: center; 
 }
 
 
@@ -28,10 +28,14 @@ body {
 
 
 .point {
-  fill: steelblue;
+  fill: royalblue;
 }
 
-.bar {
+.point:hover {
+  fill: limegreen;
+}
 
+
+.bar {
   fill: red;
 }

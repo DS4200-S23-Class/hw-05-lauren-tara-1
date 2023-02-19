@@ -13,45 +13,73 @@ const FRAME1 = d3.select("#scatter")
                     .attr("width", FRAME_WIDTH)
                     .attr("class", "frame"); 
 
+function build_interactive_scatter() {
 // Open file
-d3.csv("data/scatter-data.csv").then((data) => { 
+  d3.csv("data/scatter-data.csv").then((data) => { 
 
-    const MAX_X3 = d3.max(data, (d) => { return parseInt(d.x); });
-    const MAX_Y3 = d3.max(data, (d) => { return parseInt(d.y); });
-    
-    const X_SCALE3 = d3.scaleLinear() 
-                      .domain([0, (MAX_X3 + 1)]) 
-                      .range([0, VIS_WIDTH]); 
+      const MAX_X3 = d3.max(data, (d) => { return parseInt(d.x); });
+      const MAX_Y3 = d3.max(data, (d) => { return parseInt(d.y); });
+      
+      const X_SCALE3 = d3.scaleLinear() 
+                        .domain([0, (MAX_X3 + 1)]) 
+                        .range([0, VIS_WIDTH]); 
 
-    const Y_SCALE3 = d3.scaleLinear() 
-                      .domain([0, (MAX_Y3 + 1)]) 
-                      .range([VIS_HEIGHT, 0]); 
+      const Y_SCALE3 = d3.scaleLinear() 
+                        .domain([0, (MAX_Y3 + 1)]) 
+                        .range([VIS_HEIGHT, 0]); 
 
+      // Add points
+      FRAME1.selectAll("points")  
+          .data(data) 
+          .enter()       
+          .append("circle")  
+            .attr("cx", (d) => { return (X_SCALE3(d.x) + MARGINS.left); }) 
+            .attr("cy", (d) => { return (Y_SCALE3(d.y) + MARGINS.top); }) 
+            .attr("r", 6)
+            .attr("class", "point");
 
-    // Add points
-    FRAME1.selectAll("points")  
-        .data(data) 
-        .enter()       
-        .append("circle")  
-          .attr("cx", (d) => { return (X_SCALE3(d.x) + MARGINS.left); }) 
-          .attr("cy", (d) => { return (Y_SCALE3(d.y) + MARGINS.top); }) 
-          .attr("r", 4)
-          .attr("class", "point");
+      // Add an x-axis to the vis  
+      FRAME1.append("g") 
+          .attr("transform", "translate(" + MARGINS.left + 
+                "," + (VIS_HEIGHT + MARGINS.top) + ")") 
+          .call(d3.axisBottom(X_SCALE3).ticks(4)) 
+          .attr("font-size", '20px'); 
 
-    // Add an x-axis to the vis  
-    FRAME1.append("g") 
-        .attr("transform", "translate(" + MARGINS.left + 
-              "," + (VIS_HEIGHT + MARGINS.top) + ")") 
-        .call(d3.axisBottom(X_SCALE3).ticks(4)) 
-            .attr("font-size", '20px'); 
+      // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
+      FRAME1.append("g") 
+          .attr("transform", "translate(" + MARGINS.top +
+                "," + (VIS_HEIGHT + MARGINS.right) + ")") 
+          .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
+          .attr("font-size", '20px'); 
 
-    // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
-    FRAME1.append("g") 
-        .attr("transform", "translate(" + MARGINS.top +
-              "," + (VIS_HEIGHT + MARGINS.right) + ")") 
-        .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
-            .attr("font-size", '20px'); 
-});
+      const TOOLTIP = d3.select("#scatter")
+                          .append("div")
+                            .attr("class", "tooltip")
+                            .style("opacity", 0);
+
+      // Change color by hovering
+      function handleMouseover(event, d) {
+        // on mouseover, change color
+        TOOLTIP.style("opacity", 1);
+      }
+
+      // Revert to original color 
+      function handleMouseleave(event, d) {
+        // on mouseleave, make transparent again
+        TOOLTIP.style("opacity", 0);
+      }
+
+      function handleMouseclick(event, d) {
+      }
+      // Event Listeners
+      FRAME3.selectAll(".point")
+            .on("mouseover", handleMouseover) //add event listeners
+            .on("mouseleave", handleMouseleave)
+            .on("mouseclick", handleMouseclick); 
+    });
+}
+
+build_interactive_scatter();
 
 
 // Now starting bar graph
