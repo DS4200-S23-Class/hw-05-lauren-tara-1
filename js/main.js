@@ -130,6 +130,20 @@ function build_interactive_bar() {
               "," + (MARGINS.bottom) + ")") 
         .call(d3.axisLeft(Y_SCALE2).ticks(4)) 
             .attr("font-size", '20px');
+
+
+     // Use X_SCALE to make bars
+    FRAME2.selectAll("bars")
+      .data(data)
+      .enter()
+      .append("rect")
+        .attr("x", function(d) { return x(d.category) + MARGINS.left; })
+        .attr("width", X_SCALE2.bandwidth())
+        .attr("y", function(d) { return y(d.amount) + MARGINS.bottom; })
+        .attr("height", function(d) { return VIS_HEIGHT - Y_SCALE2(d.amount);})
+        .attr("class", "bar");
+
+
 });}
 
 build_interactive_bar()
