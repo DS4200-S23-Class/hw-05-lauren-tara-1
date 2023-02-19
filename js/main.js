@@ -38,19 +38,19 @@ function build_interactive_scatter() {
             .attr("r", 6)
             .attr("class", "point");
 
-      // Add an x-axis to the vis  
+      // Add x-axis to the vis  
       FRAME1.append("g") 
           .attr("transform", "translate(" + MARGINS.left + 
                 "," + (VIS_HEIGHT + MARGINS.top) + ")") 
           .call(d3.axisBottom(X_SCALE3).ticks(4)) 
           .attr("font-size", '20px'); 
 
-      // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
+      // Add y-axis to the vis
       FRAME1.append("g") 
-          .attr("transform", "translate(" + MARGINS.top +
-                "," + (VIS_HEIGHT + MARGINS.right) + ")") 
-          .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
-          .attr("font-size", '20px'); 
+        .attr("transform", "translate(" + MARGINS.left +
+              "," + (MARGINS.bottom) + ")") 
+        .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
+            .attr("font-size", '20px'); 
 
       const TOOLTIP = d3.select("#scatter")
                           .append("div")
