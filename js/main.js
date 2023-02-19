@@ -28,6 +28,8 @@ d3.csv("data/scatter-data.csv").then((data) => {
                       .range([VIS_HEIGHT, 0]); 
 
 
+    console.log(Y_SCALE3)
+
     // Add points
     FRAME1.selectAll("points")  
         .data(data) 
@@ -47,12 +49,13 @@ d3.csv("data/scatter-data.csv").then((data) => {
 
     // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
     FRAME1.append("g") 
-        .attr("transform", "translate(" + MARGINS.top +
-              "," + (VIS_HEIGHT + MARGINS.right) + ")") 
+        .attr("transform", "translate(" + MARGINS.left +
+              "," + (MARGINS.bottom) + ")") 
         .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
             .attr("font-size", '20px'); 
 });
 
+//////////////
 
 // Now starting bar graph
 const FRAME2 = d3.select("#bar")
@@ -80,7 +83,7 @@ d3.csv("data/bar-data.csv").then((data) => {
         .data(data) // passed from .then  
         .enter()       
         .append("rect")  
-          .attr("x", (d) => { return (X_SCALE3(d.value) + MARGINS.left); }) 
+          .attr("x", (d) => { return (X_SCALE2(d.value) + MARGINS.left); }) 
           .attr("y", MARGINS.top) 
           .attr("r", 4)
           .attr("class", "bar");
@@ -91,6 +94,8 @@ d3.csv("data/bar-data.csv").then((data) => {
               "," + (VIS_HEIGHT + MARGINS.top) + ")") 
           .call(d3.axisBottom(X_SCALE2).ticks(4)) 
           .attr("font-size", '20px'); 
+
+
 
 
 });
