@@ -69,8 +69,21 @@ function build_interactive_scatter() {
         TOOLTIP.style("opacity", 0);
       }
 
+
+
+// paste clicked points into the right column
+function getPoints(d){
+  point = d.getAttribute("data-value");
+  point_str = point + "/n"
+  paragraph= document.getElementById('p');
+  paragraph.append(point_str);
+
+}
+
       function handleMouseclick(event, d) {
+        TOOLTIP.html(getPoints(this));
       }
+
       // Event Listeners
       FRAME3.selectAll(".point")
             .on("mouseover", handleMouseover) //add event listeners
@@ -81,8 +94,6 @@ function build_interactive_scatter() {
 
 build_interactive_scatter();
 
-
-// Now starting bar graph
 const FRAME2 = d3.select("#bar")
                   .append("svg")
                     .attr("height", FRAME_HEIGHT)
@@ -90,30 +101,20 @@ const FRAME2 = d3.select("#bar")
                     .attr("class", "frame"); 
 
 
+// Now starting bar graph
 // Open file
-d3.csv("data/bar-data.csv").then((data) => { 
-    const MAX_X2 = d3.max(data, (d) => { return parseInt(d.amount); });
-    
-    // Define scale functions that maps our data values 
-    // (domain) to pixel values (range)
-    const X_SCALE2 = d3.scaleLinear() 
-                      .domain([0, (MAX_X2 + 10)]) // add some padding  
-                      .range([0, VIS_WIDTH]);
-      
-    // const X_SCALE2 = d3.scaleBand().range ([0, FRAME_WIDTH]).padding(0.4),
-    // const Y_SCALE2 = d3.scaleLinear().range ([FRAME_HEIGHT, 0]);
 
-    // Use X_SCALE to make bars
-    FRAME2.selectAll("bars")  
-        .data(data) // passed from .then  
-        .enter()       
-        .append("rect")  
-          .attr("x", (d) => { return (X_SCALE3(d.value) + MARGINS.left); }) 
-          .attr("y", MARGINS.top) 
-          .attr("r", 4)
-          .attr("class", "bar");
+function build_interactive_bar() {
 
-    // Add an axis to the vis  
+  d3.csv("data/bar-data.csv").then((data) => { 
+   
+    const X_SCALE2 = d3.scaleBand()
+                .range([0, VIS_WIDTH])
+                 .domain(data.map(function(d) {return d.category;}));
+
+    const Y_MAX = d3.max(data, (d) => { return parseInt(d.amount); });
+
+      // Add an X axis to the vis  
     FRAME2.append("g") 
           .attr("transform", "translate(" + MARGINS.left + 
               "," + (VIS_HEIGHT + MARGINS.top) + ")") 
@@ -121,9 +122,18 @@ d3.csv("data/bar-data.csv").then((data) => {
           .attr("font-size", '20px'); 
 
 
-});
+    // add a Y axis to the vis
+
+    const Y_SCALE2 = d3.scaleLinear()
+                .range([VIS_HEIGHT, 0])
+                .domain([0,Y_MAX]);
 
 
+     FRAME2.append("g") 
+        .attr("transform", "translate(" + MARGINS.left +
+              "," + (MARGINS.bottom) + ")") 
+        .call(d3.axisLeft(Y_SCALE2).ticks(4)) 
+            .attr("font-size", '20px');
+});}
 
-
-
+build_interactive_bar()
