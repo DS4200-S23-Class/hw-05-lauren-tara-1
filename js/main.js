@@ -70,15 +70,13 @@ function build_interactive_scatter() {
       }
 
 
-
-// paste clicked points into the right column
-function getPoints(d){
-  point = d.getAttribute("data-value");
-  point_str = point + "/n"
-  paragraph= document.getElementById('p');
-  paragraph.append(point_str);
-
-}
+      // Paste clicked points into the right column
+      function getPoints(d){
+        point = d.getAttribute("data-value");
+        point_str = point + "/n"
+        paragraph= document.getElementById('p');
+        paragraph.append(point_str);
+      }
 
       function handleMouseclick(event, d) {
         TOOLTIP.html(getPoints(this));
@@ -89,23 +87,21 @@ function getPoints(d){
             .on("mouseover", handleMouseover) //add event listeners
             .on("mouseleave", handleMouseleave)
             .on("mouseclick", handleMouseclick); 
+
     });
 }
 
 build_interactive_scatter();
 
+// Now starting bar graph
 const FRAME2 = d3.select("#bar")
                   .append("svg")
                     .attr("height", FRAME_HEIGHT)
                     .attr("width", FRAME_WIDTH)
                     .attr("class", "frame"); 
 
-
-// Now starting bar graph
-// Open file
-
 function build_interactive_bar() {
-
+  // Open file
   d3.csv("data/bar-data.csv").then((data) => { 
    
     const X_SCALE2 = d3.scaleBand()
