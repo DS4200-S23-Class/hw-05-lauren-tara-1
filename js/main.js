@@ -5,6 +5,7 @@ const MARGINS = {left: 50, right: 50, top: 50, bottom: 50};
 const VIS_HEIGHT = FRAME_HEIGHT - MARGINS.top - MARGINS.bottom;
 const VIS_WIDTH = FRAME_WIDTH - MARGINS.left - MARGINS.right; 
 
+
 // Beginning with scatterplot
 const FRAME1 = d3.select("#scatter")
                   .append("svg")
@@ -62,6 +63,34 @@ const FRAME2 = d3.select("#bar")
 
 // Open file
 d3.csv("data/bar-data.csv").then((data) => { 
+    const MAX_X2 = d3.max(data, (d) => { return parseInt(d.amount); });
+    
+    // Define scale functions that maps our data values 
+    // (domain) to pixel values (range)
+    const X_SCALE2 = d3.scaleLinear() 
+                      .domain([0, (MAX_X2 + 10)]) // add some padding  
+                      .range([0, VIS_WIDTH]);
+      
+    // const X_SCALE2 = d3.scaleBand().range ([0, FRAME_WIDTH]).padding(0.4),
+    // const Y_SCALE2 = d3.scaleLinear().range ([FRAME_HEIGHT, 0]);
+
+    // Use X_SCALE to make bars
+    FRAME2.selectAll("bars")  
+        .data(data) // passed from .then  
+        .enter()       
+        .append("rect")  
+          .attr("x", (d) => { return (X_SCALE3(d.value) + MARGINS.left); }) 
+          .attr("y", MARGINS.top) 
+          .attr("r", 4)
+          .attr("class", "bar");
+
+    // Add an axis to the vis  
+    FRAME2.append("g") 
+          .attr("transform", "translate(" + MARGINS.left + 
+              "," + (VIS_HEIGHT + MARGINS.top) + ")") 
+          .call(d3.axisBottom(X_SCALE2).ticks(4)) 
+          .attr("font-size", '20px'); 
+
 
   
 
