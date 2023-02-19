@@ -5,7 +5,8 @@ const MARGINS = {left: 50, right: 50, top: 50, bottom: 50};
 const VIS_HEIGHT = FRAME_HEIGHT - MARGINS.top - MARGINS.bottom;
 const VIS_WIDTH = FRAME_WIDTH - MARGINS.left - MARGINS.right; 
 
-const FRAME3 = d3.select("#scatter")
+// Beginning with scatterplot
+const FRAME1 = d3.select("#scatter")
                   .append("svg")
                     .attr("height", FRAME_HEIGHT)
                     .attr("width", FRAME_WIDTH)
@@ -26,7 +27,7 @@ d3.csv("data/scatter-data.csv").then((data) => {
                       .range([0, VIS_HEIGHT]); 
 
     // Add points
-    FRAME3.selectAll("points")  
+    FRAME1.selectAll("points")  
         .data(data) 
         .enter()       
         .append("circle")  
@@ -36,18 +37,34 @@ d3.csv("data/scatter-data.csv").then((data) => {
           .attr("class", "point");
 
     // Add an x-axis to the vis  
-    FRAME3.append("g") 
+    FRAME1.append("g") 
         .attr("transform", "translate(" + MARGINS.left + 
               "," + (VIS_HEIGHT + MARGINS.top) + ")") 
         .call(d3.axisBottom(X_SCALE3).ticks(4)) 
             .attr("font-size", '20px'); 
 
     // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
-    FRAME3.append("g") 
+    FRAME1.append("g") 
         .attr("transform", "translate(" + MARGINS.top + 
               "," + (VIS_WIDTH + MARGINS.left) + ")") 
         .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
             .attr("font-size", '20px'); 
+});
+
+
+// Now starting bar graph
+const FRAME2 = d3.select("#bar")
+                  .append("svg")
+                    .attr("height", FRAME_HEIGHT)
+                    .attr("width", FRAME_WIDTH)
+                    .attr("class", "frame"); 
+
+
+// Open file
+d3.csv("data/bar-data.csv").then((data) => { 
+
+  
+
 });
 
 
