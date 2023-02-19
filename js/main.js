@@ -141,12 +141,12 @@ function build_interactive_bar() {
       .data(data)
       .enter()
       .append("rect")
-        .style("fill", "steelblue")
         .attr("x", function(d) { return x(d.category) + MARGINS.left; })
-        .attr("width", X_SCALE2.rangeBand())
+        .attr("width", X_SCALE2.bandwidth())
         .attr("y", function(d) { return y(d.amount) + MARGINS.bottom; })
         .attr("height", function(d) { return VIS_HEIGHT - Y_SCALE2(d.amount);})
         .attr("class", "bar");
+
 
 });}
 
