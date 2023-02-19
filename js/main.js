@@ -47,8 +47,8 @@ d3.csv("data/scatter-data.csv").then((data) => {
 
     // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
     FRAME1.append("g") 
-        // .attr("transform", "translate(" + MARGINS.top + // i think its this thats fucked up
-        //       "," + (VIS_WIDTH + MARGINS.left) + ")") 
+        .attr("transform", "translate(" + MARGINS.top +
+              "," + (VIS_HEIGHT + MARGINS.right) + ")") 
         .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
             .attr("font-size", '20px'); 
 });
