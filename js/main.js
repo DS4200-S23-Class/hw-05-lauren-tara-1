@@ -25,7 +25,8 @@ d3.csv("data/scatter-data.csv").then((data) => {
 
     const Y_SCALE3 = d3.scaleLinear() 
                       .domain([0, (MAX_Y3 + 1)]) 
-                      .range([0, VIS_HEIGHT]); 
+                      .range([VIS_HEIGHT, 0]); 
+
 
     // Add points
     FRAME1.selectAll("points")  
@@ -46,8 +47,8 @@ d3.csv("data/scatter-data.csv").then((data) => {
 
     // Add a y-axis to the vis  DOESNT WORK WAHHHHHHH
     FRAME1.append("g") 
-        .attr("transform", "translate(" + MARGINS.top + 
-              "," + (VIS_WIDTH + MARGINS.left) + ")") 
+        // .attr("transform", "translate(" + MARGINS.top + // i think its this thats fucked up
+        //       "," + (VIS_WIDTH + MARGINS.left) + ")") 
         .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
             .attr("font-size", '20px'); 
 });
@@ -91,8 +92,6 @@ d3.csv("data/bar-data.csv").then((data) => {
           .call(d3.axisBottom(X_SCALE2).ticks(4)) 
           .attr("font-size", '20px'); 
 
-
-  
 
 });
 
