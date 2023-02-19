@@ -27,11 +27,7 @@ body {
 }
 
 
-.point {
-  fill: darkcyan;
-}
 
-.bar {
-
-  fill: red;
+.dot {
+  fill: steelblue;
 }
