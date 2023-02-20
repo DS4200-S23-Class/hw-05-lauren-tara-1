@@ -114,14 +114,11 @@ function build_interactive_bar() {
               "," + (VIS_HEIGHT + MARGINS.top) + ")") 
           .call(d3.axisBottom(X_SCALE2).ticks(4)) 
           .attr("font-size", '20px'); 
-[ ]
 
     // add a Y axis to the vis
-
     const Y_SCALE2 = d3.scaleLinear()
                 .range([VIS_HEIGHT, 0])
-                .domain([0,Y_MAX]);
-
+                .domain([0,Y_MAX + 20]);
 
      FRAME2.append("g") 
         .attr("transform", "translate(" + MARGINS.left +
@@ -140,7 +137,7 @@ function build_interactive_bar() {
         .attr("height", function(d) { return VIS_HEIGHT - Y_SCALE2(d.amount);})
         .attr("class", "bar");
   
-////// highlight bars when u hover
+      // Highlight bars when you hover
       const TOOLTIP2 = d3.select("#bar")
                           .append("div")
                             .attr("class", "tooltip")
@@ -152,12 +149,10 @@ function build_interactive_bar() {
         TOOLTIP2.style("opacity", 1);
       }
 
-      // tooltip for each bar
+      // Show value of each bar with tooltip
       function handleMousemove(event, d) {
-      // position the tooltip and fill in information 
       TOOLTIP2.html("Category: " + d.category + "<br>Amount: " + d.amount)
-              .style("left", (event.pageX + 10) + "px") //add offset
-                                                          // from mouse
+              .style("left", (event.pageX + 10) + "px")                                          
               .style("top", (event.pageY - 50) + "px"); 
     }
 
