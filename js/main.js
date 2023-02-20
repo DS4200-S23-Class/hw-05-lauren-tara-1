@@ -154,11 +154,17 @@ function build_interactive_bar() {
       TOOLTIP2.html("Category: " + d.category + "<br>Amount: " + d.amount)
               .style("left", (event.pageX + 10) + "px")                                          
               .style("top", (event.pageY - 50) + "px"); 
-    }
+      }
+
+      function handleMouseleave(event, d) {
+        TOOLTIP2.style("opacity", 0);
+      }
+
 
       FRAME2.selectAll(".bar")
             .on("mouseover", handleMouseover2) 
-            .on("mousemove", handleMousemove); //add event listeners
+            .on("mousemove", handleMousemove)
+            .on("mouseleave", handleMouseleave); //add event listeners
 
 });}
 
