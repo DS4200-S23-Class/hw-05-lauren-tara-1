@@ -152,8 +152,18 @@ function build_interactive_bar() {
         TOOLTIP2.style("opacity", 1);
       }
 
+      // tooltip for each bar
+      function handleMousemove(event, d) {
+      // position the tooltip and fill in information 
+      TOOLTIP2.html("Category: " + d.category + "<br>Amount: " + d.amount)
+              .style("left", (event.pageX + 10) + "px") //add offset
+                                                          // from mouse
+              .style("top", (event.pageY - 50) + "px"); 
+    }
+
       FRAME2.selectAll(".bar")
-            .on("mouseover", handleMouseover2); //add event listeners
+            .on("mouseover", handleMouseover2) 
+            .on("mousemove", handleMousemove); //add event listeners
 
 });}
 
