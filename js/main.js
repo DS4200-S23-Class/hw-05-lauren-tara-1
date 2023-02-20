@@ -5,7 +5,6 @@ const MARGINS = {left: 50, right: 50, top: 50, bottom: 50};
 const VIS_HEIGHT = FRAME_HEIGHT - MARGINS.top - MARGINS.bottom;
 const VIS_WIDTH = FRAME_WIDTH - MARGINS.left - MARGINS.right; 
 
-
 // Beginning with scatterplot
 const FRAME1 = d3.select("#scatter")
                   .append("svg")
@@ -19,7 +18,6 @@ function build_interactive_scatter() {
 
       const MAX_X3 = d3.max(data, (d) => { return parseInt(d.x); });
       const MAX_Y3 = d3.max(data, (d) => { return parseInt(d.y); });
-      
       const X_SCALE3 = d3.scaleLinear() 
                         .domain([0, (MAX_X3 + 1)]) 
                         .range([0, VIS_WIDTH]); 
@@ -116,7 +114,7 @@ function build_interactive_bar() {
               "," + (VIS_HEIGHT + MARGINS.top) + ")") 
           .call(d3.axisBottom(X_SCALE2).ticks(4)) 
           .attr("font-size", '20px'); 
-
+[ ]
 
     // add a Y axis to the vis
 
@@ -131,15 +129,14 @@ function build_interactive_bar() {
         .call(d3.axisLeft(Y_SCALE2).ticks(4)) 
             .attr("font-size", '20px');
 
-
      // Use X_SCALE to make bars
-    FRAME2.selectAll("bars")
+    FRAME2.selectAll(".bar")
       .data(data)
       .enter()
       .append("rect")
-        .attr("x", function(d) { return x(d.category) + MARGINS.left; })
+        .attr("x", function(d) { return X_SCALE2(d.category) + MARGINS.left; })
         .attr("width", X_SCALE2.bandwidth())
-        .attr("y", function(d) { return y(d.amount) + MARGINS.bottom; })
+        .attr("y", function(d) { return Y_SCALE2(d.amount) + MARGINS.bottom; })
         .attr("height", function(d) { return VIS_HEIGHT - Y_SCALE2(d.amount);})
         .attr("class", "bar");
 
