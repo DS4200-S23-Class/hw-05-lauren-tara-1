@@ -141,7 +141,6 @@ function build_interactive_bar() {
         .attr("class", "bar");
   
 ////// highlight bars when u hover
-        
       const TOOLTIP2 = d3.select("#bar")
                           .append("div")
                             .attr("class", "tooltip")
