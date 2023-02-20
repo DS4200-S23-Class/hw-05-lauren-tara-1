@@ -139,7 +139,22 @@ function build_interactive_bar() {
         .attr("y", function(d) { return Y_SCALE2(d.amount) + MARGINS.bottom; })
         .attr("height", function(d) { return VIS_HEIGHT - Y_SCALE2(d.amount);})
         .attr("class", "bar");
+  
+////// highlight bars when u hover
+        
+      const TOOLTIP2 = d3.select("#bar")
+                          .append("div")
+                            .attr("class", "tooltip")
+                            .style("opacity", 0);
 
+      // Change color by hovering
+      function handleMouseover2(event, d) {
+        // on mouseover, change color
+        TOOLTIP2.style("opacity", 1);
+      }
+
+      FRAME2.selectAll(".bar")
+            .on("mouseover", handleMouseover2); //add event listeners
 
 });}
 

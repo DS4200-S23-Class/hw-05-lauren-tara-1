@@ -39,3 +39,7 @@ body {
 .bar {
   fill: red;
 }
+
+.bar:hover {
+  fill: yellow;
+}
