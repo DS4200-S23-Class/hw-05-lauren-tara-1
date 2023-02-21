@@ -31,24 +31,15 @@
         </div>
 
         <div class="column right">
-            <p id="click-point"></p>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Scatterplot Coordinates</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>...</td>
-                    </tr>
-                </tbody>
-            </table> 
+            <h3>Plot a point!</h3>
+            <p id="last_point1"></p>
+            <p id="last_point2"></p>
 
-            <h4>Plot a point!</h4>
-            <label for="cars">Choose an x-coord:</label>
 
-            <select name="x" id="x-coord">
+            <form>
+            <label>Choose an x-coord:</label>
+
+            <select id="x-coord">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -60,9 +51,9 @@
                 <option value="9">9</option>
             </select>
 
-            <label for="cars">Choose a y-coord:</label>
+            <label>Choose a y-coord:</label>
 
-            <select name="y" id="y-coord">
+            <select id="y-coord">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -74,6 +65,8 @@
                 <option value="9">9</option>
             </select>
 
+            <button type="button" id="subButton">Submit</button>
+        </form>
         </div>
 
     </div>

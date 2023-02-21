@@ -1,6 +1,6 @@
 // Set variables
-const FRAME_HEIGHT = 300;
-const FRAME_WIDTH = 500; 
+const FRAME_HEIGHT = 400;
+const FRAME_WIDTH = 600; 
 const MARGINS = {left: 50, right: 50, top: 50, bottom: 50};
 const VIS_HEIGHT = FRAME_HEIGHT - MARGINS.top - MARGINS.bottom;
 const VIS_WIDTH = FRAME_WIDTH - MARGINS.left - MARGINS.right; 
@@ -12,18 +12,17 @@ const FRAME1 = d3.select("#scatter")
                     .attr("width", FRAME_WIDTH)
                     .attr("class", "frame"); 
 
-function build_interactive_scatter() {
 // Open file
   d3.csv("data/scatter-data.csv").then((data) => { 
 
-      const MAX_X3 = d3.max(data, (d) => { return parseInt(d.x); });
-      const MAX_Y3 = d3.max(data, (d) => { return parseInt(d.y); });
-      const X_SCALE3 = d3.scaleLinear() 
-                        .domain([0, (MAX_X3 + 1)]) 
+      const MAX_X1 = d3.max(data, (d) => { return parseInt(d.x); });
+      const MAX_Y1 = d3.max(data, (d) => { return parseInt(d.y); });
+      const X_SCALE1 = d3.scaleLinear() 
+                        .domain([0, (MAX_X1 + 1)]) 
                         .range([0, VIS_WIDTH]); 
 
-      const Y_SCALE3 = d3.scaleLinear() 
-                        .domain([0, (MAX_Y3 + 1)]) 
+      const Y_SCALE1 = d3.scaleLinear() 
+                        .domain([0, (MAX_Y1 + 1)]) 
                         .range([VIS_HEIGHT, 0]); 
 
       // Add points
@@ -31,8 +30,8 @@ function build_interactive_scatter() {
           .data(data) 
           .enter()       
           .append("circle")  
-            .attr("cx", (d) => { return (X_SCALE3(d.x) + MARGINS.left); }) 
-            .attr("cy", (d) => { return (Y_SCALE3(d.y) + MARGINS.top); }) 
+            .attr("cx", (d) => { return (X_SCALE1(d.x) + MARGINS.left); }) 
+            .attr("cy", (d) => { return (Y_SCALE1(d.y) + MARGINS.top); }) 
             .attr("r", 6)
             .attr("class", "point");
 
@@ -40,35 +39,75 @@ function build_interactive_scatter() {
       FRAME1.append("g") 
             .attr("transform", "translate(" + MARGINS.left + 
                 "," + (VIS_HEIGHT + MARGINS.top) + ")") 
-            .call(d3.axisBottom(X_SCALE3).ticks(4)) 
+            .call(d3.axisBottom(X_SCALE1).ticks(4)) 
             .attr("font-size", '20px'); 
 
       // Add y-axis to the vis
       FRAME1.append("g") 
         .attr("transform", "translate(" + MARGINS.left +
               "," + (MARGINS.bottom) + ")") 
-        .call(d3.axisLeft(Y_SCALE3).ticks(4)) 
+        .call(d3.axisLeft(Y_SCALE1).ticks(4)) 
             .attr("font-size", '20px'); 
 
-      const TOOLTIP = d3.select("#scatter")
-                          .append("div")
-                            .attr("class", "tooltip")
-                            .style("opacity", 0);
+      // Create a border when data point is clicked on
+      function mouseClick() {
+        this.classList.toggle("addBorder");
+        this.classList.toggle("point");
+
+        let x_var = (this.getAttribute("cx") / 50) - 1;
+        let y_var = (370 - this.getAttribute("cy")) / 50;
+
+        let lastPoint1 = "Last point clicked: "
+        let lastPoint2 = "(" + x_var + "," + y_var + ")"
+
+        document.getElementById("last_point1").innerHTML = lastPoint1;
+        document.getElementById("last_point2").innerHTML = lastPoint2;     
+      }
+
+      let points = document.getElementsByTagName("circle");
+
+      for (let i = 0; i < points.length; i++) {
+        let point = points[i];
+        point.addEventListener("click", mouseClick);
+      }
+
+      // Plot point from user-given coordinates
+      function addPoint() {
+        let xVal = document.getElementById("x-coord");
+        let yVal = document.getElementById("y-coord");
+
+        let x = xVal.value;
+        let y = yVal.value;
+
+        let xFinal = (x * 50);
+        let yFinal = 370 - (y * 50);
+
+        FRAME1.append("circle")
+              .attr("cx", (xFinal + MARGINS.left))
+              .attr("cy", (yFinal))
+              .attr("r", 6)
+              .attr("class", "point");
+
+        for (let i = 0; i < points.length; i++) {
+          let point = points[i];
+        point.addEventListener("click", mouseClick);
+          }
+        }
+
+        let clickButton = document.getElementById("subButton");
+        clickButton.addEventListener("click", addPoint);
+
+      });
+
+
+
+
+      // const TOOLTIP = d3.select("#scatter")
+      //                     .append("div")
+      //                       .attr("class", "tooltip")
+      //                       .style("opacity", 0);
 
  
-      // // function to change color of max point 
-      // function borderClicked(point) {
-      //   point.classList.toggle("bordered"); // also check out remove() and toggle() 
-      // }
-
-      // // function to get coordinates of clicked circle
-      // function circleCoords(point) {
-      //   let xVal = point.getAttribute("cx") / 50
-      //   let yVal = (FRAME_WIDTH - point.getAttribute("cy")) / 50
-
-      //   let pointDisplay = "Coordinates: (" + xVal + "," + yVal + ")";
-      //   document.getElementById("click-point").innerHTML = pointDisplay;
-      // }
 
 
       // // Event Listeners
@@ -76,10 +115,6 @@ function build_interactive_scatter() {
       //       .on("clickpoint", borderClicked) 
       //       .on("circlecoords", circleCoords); // add event listeners
 
-    });
-}
-
-build_interactive_scatter();
 
 // Now starting bar graph
 const FRAME2 = d3.select("#bar")

@@ -35,6 +35,11 @@ body {
   fill: limegreen;
 }
 
+.addBorder {
+  stroke: darkorange;
+  stroke-width: 3px;
+}
+
 
 .bar {
   fill: red;
@@ -52,14 +57,3 @@ body {
   border-radius: 5px;
   padding: 5px;
 }
-
-.bordered {
-  stroke: green;
-  stroke-width: 5px;
-}
-
-/*.table {
-  padding: 10px;
-  border: 1px solid #666;
-  width: 100%;
-}*/
