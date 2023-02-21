@@ -55,7 +55,7 @@ function build_interactive_scatter() {
                             .attr("class", "tooltip")
                             .style("opacity", 0);
 
-
+ 
       // // function to change color of max point 
       // function borderClicked(point) {
       //   point.classList.toggle("bordered"); // also check out remove() and toggle() 
