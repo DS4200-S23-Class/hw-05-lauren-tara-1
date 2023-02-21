@@ -53,9 +53,13 @@ body {
   padding: 5px;
 }
 
+.bordered {
+  stroke: green;
+  stroke-width: 5px;
+}
 
-.table {
+/*.table {
   padding: 10px;
   border: 1px solid #666;
   width: 100%;
-}
+}*/

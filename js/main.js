@@ -55,35 +55,26 @@ function build_interactive_scatter() {
                             .attr("class", "tooltip")
                             .style("opacity", 0);
 
-      function handleMousemove(event, d) {
-      // position the tooltip and fill in information 
-        TOOLTIP.html("X-Coord: " + d.x + "<br>Y-Coord: " + d.y)
-                .style("left", (event.pageX + 10) + "px") //add offset
-                                                          // from mouse
-                .style("top", (event.pageY - 50) + "px"); 
-    }
 
-      // // Change color by hovering
-      // function handleMouseover(event, d) {
-      //   // on mouseover, change color
-      //   TOOLTIP.style("opacity", 1);
+      // // function to change color of max point 
+      // function borderClicked(point) {
+      //   point.classList.toggle("bordered"); // also check out remove() and toggle() 
       // }
 
-      // // Revert to original color 
-      // function handleMouseleave(event, d) {
-      //   // on mouseleave, make transparent again
-      //   TOOLTIP.style("opacity", 0);
+      // // function to get coordinates of clicked circle
+      // function circleCoords(point) {
+      //   let xVal = point.getAttribute("cx") / 50
+      //   let yVal = (FRAME_WIDTH - point.getAttribute("cy")) / 50
+
+      //   let pointDisplay = "Coordinates: (" + xVal + "," + yVal + ")";
+      //   document.getElementById("click-point").innerHTML = pointDisplay;
       // }
 
-      // // Put clicked point coordinates in right column
-      // function clickPoint() {
-      //   console.log('yes');
 
-      // }
-
-    // Event Listeners
-    FRAME1.selectAll(".point")
-          .on("mousemove", handleMousemove); // add event listeners
+      // // Event Listeners
+      // FRAME1.selectAll(".point")
+      //       .on("clickpoint", borderClicked) 
+      //       .on("circlecoords", circleCoords); // add event listeners
 
     });
 }
