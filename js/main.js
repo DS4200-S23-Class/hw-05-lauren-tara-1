@@ -101,21 +101,6 @@ const FRAME1 = d3.select("#scatter")
 
 
 
-
-      // const TOOLTIP = d3.select("#scatter")
-      //                     .append("div")
-      //                       .attr("class", "tooltip")
-      //                       .style("opacity", 0);
-
- 
-
-
-      // // Event Listeners
-      // FRAME1.selectAll(".point")
-      //       .on("clickpoint", borderClicked) 
-      //       .on("circlecoords", circleCoords); // add event listeners
-
-
 // Now starting bar graph
 const FRAME2 = d3.select("#bar")
                   .append("svg")

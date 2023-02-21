@@ -26,6 +26,10 @@ body {
   border: 1px solid black;
 }
 
+.circle {
+  fill: royalblue;
+}
+
 
 .point {
   fill: royalblue;
