@@ -55,36 +55,30 @@ function build_interactive_scatter() {
                             .attr("class", "tooltip")
                             .style("opacity", 0);
 
-      // Change color by hovering
-      function handleMouseover(event, d) {
-        // on mouseover, change color
-        TOOLTIP.style("opacity", 1);
-      }
+      // // Change color by hovering
+      // function handleMouseover(event, d) {
+      //   // on mouseover, change color
+      //   TOOLTIP.style("opacity", 1);
+      // }
 
-      // Revert to original color 
-      function handleMouseleave(event, d) {
-        // on mouseleave, make transparent again
-        TOOLTIP.style("opacity", 0);
-      }
+      // // Revert to original color 
+      // function handleMouseleave(event, d) {
+      //   // on mouseleave, make transparent again
+      //   TOOLTIP.style("opacity", 0);
+      // }
+
+      // // Put clicked point coordinates in right column
+      // function clickPoint() {
+      //   console.log('yes');
+
+      // }
 
 
-      // Paste clicked points into the right column
-      function getPoints(d){
-        point = d.getAttribute("data-value");
-        point_str = point + "/n"
-        paragraph= document.getElementById('p');
-        paragraph.append(point_str);
-      }
-
-      function handleMouseclick(event, d) {
-        TOOLTIP.html(getPoints(this));
-      }
-
-      // Event Listeners
-      FRAME3.selectAll(".point")
-            .on("mouseover", handleMouseover) //add event listeners
-            .on("mouseleave", handleMouseleave)
-            .on("mouseclick", handleMouseclick); 
+      // // Event Listeners
+      // FRAME1.selectAll(".point")
+      //       .on("mouseover", handleMouseover) //add event listeners
+      //       .on("mouseleave", handleMouseleave)
+      //       .on("mouseclick", handleMouseclick); 
 
     });
 }

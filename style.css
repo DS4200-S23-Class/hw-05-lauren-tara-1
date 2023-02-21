@@ -52,3 +52,9 @@ body {
   border-radius: 5px;
   padding: 5px;
 }
+
+.table {
+  padding: 10px;
+  border: 1px solid #666;
+  width: 100%;
+}
