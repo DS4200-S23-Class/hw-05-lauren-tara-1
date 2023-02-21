@@ -60,8 +60,8 @@ const FRAME1 = d3.select("#scatter")
         let lastPoint1 = "Last point clicked: "
         let lastPoint2 = "(" + x_var + "," + y_var + ")"
 
-        document.getElementById("last_point1").innerHTML = lastPoint1;
-        document.getElementById("last_point2").innerHTML = lastPoint2;     
+        document.getElementById("point1").innerHTML = lastPoint1;
+        document.getElementById("point2").innerHTML = lastPoint2;     
       }
 
       let points = document.getElementsByTagName("circle");

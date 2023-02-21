@@ -24,13 +24,13 @@ The purpose of this assignment is to practice creating interactive visualization
    - Add a centered header: "hw-05: Interactive Graph with D3". *
    - Create two columns on your webpage. The left should take up 60% of the page and the right should take up 40%. *
    - In the left column, use D3 to create a scatterplot of the data in the scatter-data.csv file included in this repo. The D3 library is included in the js folder of this repo; be sure to include it in your html file. Your scatterplot should include the following interactive features:
-      - If the user hovers over a point, that point should highlight.  
+      - If the user hovers over a point, that point should highlight. *
       - If the user clicks on a point, that point should be given a border. And the point's coordinates should show in the right column. 
       - If the user clicks on a point that already has a border, the point's border should disappear. 
-   - In the right column of your webpage, allow the user to input coordinates for a new point they want to add to the scatterplot. You may restrict inputs to integers between 1 and 9 so that you do not need to change your scatterplot scale from earlier. You can be creative in how you solicit points from the user, but if you need an idea for how to start, try emulating the reference solution. Once the user submits their coordiantes, add the appropriate point to your scatterplot. This point should have all the same event handling capabilities as your existing points. Note: it is okay if all of your points reset to be un-bordered after the user adds a new point.  
-   - In the left column of your page, under the scatterplot, use D3 to create a bar chart of the data in the bar-data.csv file included in this repo. Your bar chart should include the following interactive features:
+   - In the right column of your webpage, allow the user to input coordinates for a new point they want to add to the scatterplot. You may restrict inputs to integers between 1 and 9 so that you do not need to change your scatterplot scale from earlier. You can be creative in how you solicit points from the user, but if you need an idea for how to start, try emulating the reference solution. Once the user submits their coordiantes, add the appropriate point to your scatterplot. This point should have all the same event handling capabilities as your existing points. Note: it is okay if all of your points reset to be un-bordered after the user adds a new point.  *
+   - In the left column of your page, under the scatterplot, use D3 to create a bar chart of the data in the bar-data.csv file included in this repo. Your bar chart should include the following interactive features: 
       - If the user hovers over a bar, that bar should highlight, and a tooltip should appear that tells the user the bar's values. While it is present, the tooltip should overlay the visualization. *
-   - Add a centered header to the bottom of your page. The header should say "Acknowledgements" in font smaller than the font used for your first header. Under this header, add a div. Inside of this div add a bulleted list of the resources you used to complete this assignment.  
+   - Add a centered header to the bottom of your page. The header should say "Acknowledgements" in font smaller than the font used for your first header. Under this header, add a div. Inside of this div add a bulleted list of the resources you used to complete this assignment. *  
 
 ## Python Simple Server
 
