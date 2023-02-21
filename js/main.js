@@ -38,10 +38,10 @@ function build_interactive_scatter() {
 
       // Add x-axis to the vis  
       FRAME1.append("g") 
-          .attr("transform", "translate(" + MARGINS.left + 
+            .attr("transform", "translate(" + MARGINS.left + 
                 "," + (VIS_HEIGHT + MARGINS.top) + ")") 
-          .call(d3.axisBottom(X_SCALE3).ticks(4)) 
-          .attr("font-size", '20px'); 
+            .call(d3.axisBottom(X_SCALE3).ticks(4)) 
+            .attr("font-size", '20px'); 
 
       // Add y-axis to the vis
       FRAME1.append("g") 
@@ -54,6 +54,14 @@ function build_interactive_scatter() {
                           .append("div")
                             .attr("class", "tooltip")
                             .style("opacity", 0);
+
+      function handleMousemove(event, d) {
+      // position the tooltip and fill in information 
+        TOOLTIP.html("X-Coord: " + d.x + "<br>Y-Coord: " + d.y)
+                .style("left", (event.pageX + 10) + "px") //add offset
+                                                          // from mouse
+                .style("top", (event.pageY - 50) + "px"); 
+    }
 
       // // Change color by hovering
       // function handleMouseover(event, d) {
@@ -73,12 +81,9 @@ function build_interactive_scatter() {
 
       // }
 
-
-      // // Event Listeners
-      // FRAME1.selectAll(".point")
-      //       .on("mouseover", handleMouseover) //add event listeners
-      //       .on("mouseleave", handleMouseleave)
-      //       .on("mouseclick", handleMouseclick); 
+    // Event Listeners
+    FRAME1.selectAll(".point")
+          .on("mousemove", handleMousemove); // add event listeners
 
     });
 }
