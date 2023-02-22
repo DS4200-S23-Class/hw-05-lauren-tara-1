@@ -53,9 +53,9 @@ const FRAME1 = d3.select("#scatter")
       function mouseClick() {
         this.classList.toggle("addBorder");
         this.classList.toggle("point");
-
+        console.log(this.getAttribute("cy"));
         let x_var = (this.getAttribute("cx") / 50) - 1;
-        let y_var = (370 - this.getAttribute("cy")) / 50;
+        let y_var = (350 -(this.getAttribute("cy"))) /30;
 
         let lastPoint1 = "Last point clicked: "
         let lastPoint2 = "(" + x_var + "," + y_var + ")"
@@ -80,7 +80,7 @@ const FRAME1 = d3.select("#scatter")
         let y = yVal.value;
 
         let xFinal = (x * 50);
-        let yFinal = 370 - (y * 50);
+        let yFinal = 350 - (y * 30);
 
         FRAME1.append("circle")
               .attr("cx", (xFinal + MARGINS.left))
